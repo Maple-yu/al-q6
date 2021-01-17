@@ -29,7 +29,7 @@ dump		1 all xyz 5000 al.xyz
 dump_modify	1 element Al
 ##############
 
-fix			1 all npt temp ${temp} ${temp} 0.2 iso 0 0 1 drag 0
+fix		1 all npt temp ${temp} ${temp} 0.2 iso 0 0 1 drag 0
 fix		8 all plumed plumedfile plumed.dat outfile log.plumed
 run         ${n}
 unfix		1
