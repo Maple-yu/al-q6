@@ -1,11 +1,12 @@
 # plumed in 950K
 log		log.al
 
+variable    temp equal 950K
 variable    n equal 10000000
 read_restart plumed-start.restart
 
 pair_style 	eam/alloy
-pair_coeff	* * Al99.eam.alloy Al 
+pair_coeff	* * ../Al99.eam.alloy Al 
 
 neigh_modify    delay 10 every 1
 
@@ -28,8 +29,8 @@ dump		1 all xyz 5000 al.xyz
 dump_modify	1 element Al
 ##############
 
-fix			1 all npt temp 950 300 0.2 iso 0 0 1 drag 0
-#fix		8 all plumed plumedfile plumed.dat outfile log.plumed
+fix			1 all npt temp ${temp} ${temp} 0.2 iso 0 0 1 drag 0
+fix		8 all plumed plumedfile plumed.dat outfile log.plumed
 run         ${n}
 unfix		1
 unfix		8
